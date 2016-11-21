@@ -1,0 +1,32 @@
+.button {
+  background-color: $color-primary;
+  color: $color-secondary;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-family: inherit;
+  white-space: nowrap;
+  user-select: none;
+  background-image: none;
+  line-height: 1;
+  display: inline-block;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:before {
+    content: "<";
+  }
+
+  &:after {
+    content: ">";
+  }
+
+  &[disabled] {
+    opacity: .25;
+    cursor: default;
+  }
+}

@@ -1,0 +1,12 @@
+.list {
+
+  > li {
+    &:hover {
+      background-color: $color-primary-muted;
+    }
+  }
+}
+
+.list-descriptor {
+  float: right;
+}
