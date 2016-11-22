@@ -6,7 +6,7 @@ node_modules
 jspm_packages
 link-checker-results.txt
 npm-debug.log
-public/**/*.js
+src/**/*.js
 e2e/**/*.js
 *.js.map
 _test-output

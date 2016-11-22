@@ -1,3 +1,9 @@
-$color-primary: #fffedb;
+$color-primary: #fff;
 $color-primary-muted: darken($color-primary, 80%);
-$color-secondary: #000;
+$color-secondary: blue;
+$color-secondary-muted: darken($color-secondary, 10%);
+$color-danger: #f00;
+$color-accent: #000;
+$padding-size: 20px;
+$line-height: 1.5em;
+$font-size: 20px;

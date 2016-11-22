@@ -7,19 +7,15 @@
           <p>
             {{location.percentExplored}}% explored
           </p>
-          <p>
-            <button class="button" (click)="explore()" [disabled]="location.percentExplored >= 100">Explore</button>
-          </p>
         </template>
         <template [ngIf]="isAttacking">
           <label class="panel-label">Chance to defeat</label>
-          <p class="alert">
+          <p class="blink">
             Rover under attack!
           </p>
-          <ul class="list" *ngFor="let enemy of enemies">
-            <li>
+          <ul class="list">
+            <li *ngFor="let enemy of enemies">
               <button class="button" (click)="attack(enemy)">Attack {{enemy.name}}</button>
-              {{enemy.health}} HP
               <span *ngIf="isActive(enemy)">
                 <span *ngIf="!getAttackStatus(enemy)">[Miss]</span>
                 <span *ngIf="getAttackStatus(enemy)">>Hit<</span>
@@ -29,6 +25,11 @@
           </ul>
         </template>
       </div>
+      <div class="panel-footer">
+        <button class="button" *ngIf="!isAttacking" (click)="explore()" [disabled]="location.percentExplored >= 100"><i class="hotkey">E</i>xplore</button>
+        <button class="button" *ngIf="!isAttacking" routerLink="/"><i class="hotkey">R</i>eturn to base</button>
+        <button class="button" *ngIf="isAttacking" routerLink="/"><i class="hotkey">R</i>etreat</button>
+      </div>
     </div>
   </div>
   <div class="col-sm-4">
@@ -36,8 +37,8 @@
       <h1 class="panel-title">{{player.name}}</h1>
       <div class="panel-body">
         <ul class="list">
-          <li [class.alert]="getHealthPercentage(player) < 45">
-            Health: <span class="list-descriptor">{{player.health}}/{{player.maxHealth}}</span>
+          <li>
+            Health: <span class="list-descriptor" [class.danger]="getHealthPercentage(player) < 25">{{player.health}}/{{player.healthMax}}</span>
           </li>
           <li>
             Attack: <span class="list-descriptor">{{player.attack}}</span>
@@ -47,12 +48,22 @@
           </li>
         </ul>
       </div>
+      <div class="panel-footer">
+        <button (click)="heal()"><i class="hotkey">H</i>eal&nbsp;({{player.healthKits}})</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h1 class="panel-title">Inventory</h1>
+      <div class="panel-body">
+        <ul class="list">
+          <li *ngFor="let slot of player.inventory.slots">
+            <div *ngIf="slot.item">
+              <button (click)="use(slot)">Use {{slot.item.name}}</button>
+              <span class="list-descriptor">{{slot.quantity}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
-<p *ngIf="!isAttacking">
-  <a class="button" href routerLink="/">Return to base</a>
-</p>
-<p *ngIf="isAttacking">
-  <a class="button" href routerLink="/">Retreat</a>
-</p>

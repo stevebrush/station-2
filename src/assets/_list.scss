@@ -1,8 +1,17 @@
 .list {
-
   > li {
-    &:hover {
-      background-color: $color-primary-muted;
+    &:hover {}
+  }
+
+  .panel-body > & {
+    margin-left: -$padding-size/2;
+    margin-right: -$padding-size/2;
+
+    > li {
+      padding-left: $padding-size/2;
+      padding-right: $padding-size/2;
+
+      > .button {}
     }
   }
 }

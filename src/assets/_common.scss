@@ -1,12 +1,20 @@
 body {
 	font-family: 'monaco';
-  font-size: 20px;
+  font-size: $font-size;
   text-transform: uppercase;
   background-color: $color-secondary;
   color: $color-primary;
-  line-height: 2em;
+  line-height: $line-height;
 }
 
 * {
 	box-sizing: border-box;
+	-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+p {
+	margin-bottom: $padding-size;
 }

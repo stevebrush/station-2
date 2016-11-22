@@ -1,29 +1,57 @@
+button,
 .button {
   background-color: $color-primary;
   color: $color-secondary;
   text-decoration: none;
   border: 0;
-  padding: 0;
-  font-size: 1em;
+  padding: 0 6px;
+  font-size: $font-size;
   text-transform: uppercase;
   font-family: inherit;
   white-space: nowrap;
   user-select: none;
   background-image: none;
-  line-height: 1;
+  line-height: $line-height;
   display: inline-block;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
 
   &:hover {
     cursor: pointer;
   }
 
-  &:before {
-    content: "<";
+  > .hotkey {
+    text-decoration: underline;
   }
 
-  &:after {
-    content: ">";
+  > .button-key {
+    background-color: $color-accent;
+    color: yellow;
+    margin-right: 5px;
+    line-height: $line-height;
+    margin-left: -5px;
+    display: inline-block;
+    padding: 0 5px;
+
+    &:before {
+      content: "<";
+    }
+
+    &:after {
+      content: ">";
+    }
   }
+
+  // &:before {
+  //   content: "<";
+  // }
+  //
+  // &:after {
+  //   content: ">";
+  // }
 
   &[disabled] {
     opacity: .25;

@@ -1,9 +1,9 @@
 .container {
-  padding: 40px;
+  padding: $padding-size * 2;
 }
 
 .row {
-  margin: 0 -20px;
+  margin: 0px ($padding-size * -1);
 
   &:after {
     content: "";
@@ -13,7 +13,7 @@
 
   > div[class^="col-"] {
     min-height: 1px;
-    padding: 0 20px;
+    padding: 0 $padding-size;
     float: left;
   }
 }
