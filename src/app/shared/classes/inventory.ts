@@ -1,4 +1,4 @@
-import { InventorySlot } from './inventory-slot';
+import { InventorySlot } from './index';
 
 export class Inventory {
   public slots: InventorySlot<any>[];

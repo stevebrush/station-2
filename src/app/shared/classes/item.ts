@@ -1,4 +1,8 @@
-import { ItemOptions } from '../interfaces';
+interface ItemOptions {
+  id: number;
+  isConsumable?: boolean;
+  name: string;
+}
 
 export abstract class Item {
   public id: number;

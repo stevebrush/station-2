@@ -4,9 +4,8 @@ import { Item,
          Currency,
          Inventory,
          Salve } from '../classes';
-import { Crudable } from '../interfaces';
 
-import { Observable } from 'rxjs/Rx';
+import { Crudable } from '../interfaces';
 
 @Injectable()
 export class ItemService implements Crudable {

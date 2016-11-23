@@ -1,13 +1,9 @@
 import { Item, Character } from './index';
-import { ItemOptions, Usable, Healable } from '../interfaces';
+import { Usable, Healable } from '../interfaces';
 
 export class Salve extends Item implements Usable, Healable {
   public isUsable: boolean = true;
-  public potency: number;
-
-  constructor(options: ItemOptions) {
-    super(options);
-  }
+  public potency: number = 15;
 
   public actOn(character: Character): void {
     this.heal(character);

@@ -1,9 +1,12 @@
-export { Character } from './character';
+export { Location } from './location';
+
+export { Item } from './item';
 export { Currency } from './currency';
-export { Enemy } from './enemy';
+export { Salve } from './salve';
+
 export { Inventory } from './inventory';
 export { InventorySlot } from './inventory-slot';
-export { Item } from './item';
-export { Location } from './location';
+
+export { Character } from './character';
+export { Enemy } from './enemy';
 export { Player } from './player';
-export { Salve } from './salve';

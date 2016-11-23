@@ -1,0 +1,9 @@
+{
+  "items": [
+    {
+      "_id": "123",
+      "name": "Cogs",
+      "type": "Currency"
+    }
+  ]
+}

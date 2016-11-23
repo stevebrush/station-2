@@ -8,7 +8,9 @@ import { Enemy,
          Item,
          Inventory,
          InventorySlot } from '../shared/classes';
-import { ItemService } from '../shared/services';
+import { ItemService,
+         LocationService,
+         PlayerService } from '../shared/services';
 
 @Component({
   selector: 'station-location',
@@ -23,6 +25,8 @@ export class LocationComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
+    private locationService: LocationService,
+    private playerService: PlayerService,
     private router: Router) {}
 
   private setAttackStatus(enemy: Enemy, status: boolean): void {
@@ -34,20 +38,6 @@ export class LocationComponent implements OnInit {
         attackStatus.isSuccess = status;
       }
     });
-  }
-
-  public getHealthPercentage(character: Character): number {
-    return Math.floor((character.health / character.healthMax) * 100);
-  }
-
-  public heal(): void {
-    if (this.player.healthKits > 0) {
-      this.player.health += 10;
-      this.player.healthKits -= 1;
-      if (this.player.health > this.player.healthMax) {
-        this.player.health = this.player.healthMax;
-      }
-    }
   }
 
   public attack(enemy: Enemy): void {
@@ -73,9 +63,9 @@ export class LocationComponent implements OnInit {
       this.setAttackStatus(enemy, false);
     }
 
-    this.player.health -= enemy.attack;
+    this.player.modifyHealth(-enemy.attack);
 
-    if (this.player.health <= 0) {
+    if (this.player.health === 0) {
       alert('You died.');
       this.router.navigate(['/home']);
       return;
@@ -109,7 +99,7 @@ export class LocationComponent implements OnInit {
 
   public getChanceToDefeat(enemy: Enemy): number {
     let percent: number = 95;
-    percent -= 100 - this.getHealthPercentage(this.player);
+    percent -= 100 - this.player.getHealthPercentage();
     if (this.player.defense < enemy.attack) {
       percent -= 30;
     }
@@ -127,6 +117,7 @@ export class LocationComponent implements OnInit {
 
   public explore(): void {
     this.location.percentExplored += 10;
+
     if (this.location.percentExplored > 100) {
       this.location.percentExplored = 100;
     }
@@ -136,6 +127,9 @@ export class LocationComponent implements OnInit {
     if (this.location.enemies.length > 0 && chanceOfAttack > 3) {
 
       let numEnemies = Math.floor(Math.random() * this.location.enemies.length) + 1;
+      if (numEnemies > 2) {
+        numEnemies = 2;
+      }
       this.isAttacking = true;
       this.enemies = [];
 
@@ -150,75 +144,24 @@ export class LocationComponent implements OnInit {
   }
 
   public use(slot: InventorySlot<any>): void {
-    if (slot.item.isUsable) {
-      slot.item.actOn(this.player);
-    }
-    if (slot.item.isConsumable) {
-      slot.modifyQuantity(-1);
-      this.player.inventory.clean();
-    }
-    // if (slot.item.isEquippable) {
-    //   this.player.equip(slot.item);
-    // }
+    slot.item.actOn(this.player);
+    slot.modifyQuantity(-1);
+    this.player.inventory.clean();
   }
 
   public ngOnInit(): void {
-
-    this.location = <Location>{
-      name: 'Lucky`s Garage',
-      percentExplored: 0,
-      enemies: [
-        new Enemy({
-          attack: 4,
-          defense: 2,
-          health: 5,
-          healthMax: 5,
-          id: 1,
-          name: 'Ogre'
-        }),
-        new Enemy({
-          attack: 1,
-          defense: 1,
-          health: 2,
-          healthMax: 2,
-          id: 2,
-          name: 'Rat'
-        }),
-        new Enemy({
-          attack: 7,
-          defense: 10,
-          health: 10,
-          healthMax: 10,
-          id: 3,
-          name: 'Croag'
-        })
-      ]
-    };
-
-    this.player = new Player({
-      attack: 2,
-      defense: 2,
-      health: 35,
-      healthKits: 3,
-      healthMax: 35,
-      id: 0,
-      inventory: new Inventory(<InventorySlot<any>[]>[{
-        itemId: 1,
-        quantity: 5
-      }]),
-      name: 'Blasko'
-    });
-
-    this.itemService.populate(this.player.inventory).then(data => {
-      console.log("Done populating items.");
-    });
-
-    this.location.enemies.forEach(enemy => {
-      this.attackStatuses.push({
-        id: enemy.id,
-        isActive: false,
-        isSuccess: false
+    this.locationService.getById(1).then(data => {
+      this.location = data;
+      this.location.enemies.forEach(enemy => {
+        this.attackStatuses.push({
+          id: enemy.id,
+          isActive: false,
+          isSuccess: false
+        });
       });
+    });
+    this.playerService.getPlayer().then(data => {
+      this.player = data;
     });
   }
 }
