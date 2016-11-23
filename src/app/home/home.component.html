@@ -1,6 +1,18 @@
-<div class="panel">
-  <h1 class="panel-title">Halberd V</h1>
-  <div class="panel-body">
-    <button class="button" routerLink="/location">Venture forth</button>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="panel">
+      <h1 class="panel-title">Halberd V</h1>
+      <div class="panel-body">
+        <button routerLink="/location">Wander the wastes...</button>
+        <ul class="list">
+          <li>
+            <button [routerLink]="['/location', 1]">Visit Dungeon #1</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <station-player-stats></station-player-stats>
   </div>
 </div>

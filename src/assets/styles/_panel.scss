@@ -1,27 +1,44 @@
+$panel-offset: -14px;
+
 .panel {
-  border: 3px double $color-primary;
+  border: 1px solid $color-primary;
   position: relative;
   margin-bottom: 48px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 1px solid $color-primary;
+    pointer-events: none;
+  }
 }
 
 .panel-title {
   background-color: $color-secondary;
   padding: 0 ($padding-size / 2);
   position: absolute;
-  top: -18px;
-  left: $padding-size / 2;
+  top: $panel-offset;
+  left: $padding-size - ($padding-size / 2);
+  color: $color-highlight;
 }
 
 .panel-label {
   background-color: $color-secondary;
   padding: 0 ($padding-size / 2);
   position: absolute;
-  top: -18px;
+  top: $panel-offset;
   right: $padding-size / 2;
 }
 
 .panel-body {
-  padding: ($padding-size + ($padding-size/2)) $padding-size;
+  padding-top: $padding-size + ($padding-size / 2);
+  padding-right: $padding-size;
+  padding-left: $padding-size;
+  padding-bottom: $padding-size + ($padding-size / 2);
 
   > * {
     margin-bottom: 0;
@@ -32,8 +49,8 @@
   background-color: $color-secondary;
   padding: 0;
   position: absolute;
-  bottom: -16px;
-  left: 14px;
+  bottom: $panel-offset;
+  left: $padding-size - ($padding-size / 2);
 
   > .button {
 

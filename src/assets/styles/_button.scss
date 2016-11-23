@@ -4,7 +4,7 @@ button,
   color: $color-secondary;
   text-decoration: none;
   border: 0;
-  padding: 0 6px;
+  padding: 0 ($padding-size / 2);
   font-size: $font-size;
   text-transform: uppercase;
   font-family: inherit;

@@ -27,45 +27,14 @@
           </template>
         </div>
         <div class="panel-footer">
-          <button class="button" *ngIf="!isAttacking" (click)="explore()" [disabled]="location.percentExplored >= 100"><i class="hotkey">E</i>xplore</button>
-          <button class="button" *ngIf="!isAttacking" routerLink="/"><i class="hotkey">R</i>eturn to base</button>
-          <button class="button" *ngIf="isAttacking" routerLink="/"><i class="hotkey">R</i>etreat</button>
+          <button *ngIf="!isAttacking" (click)="explore()" [disabled]="location.percentExplored >= 100"><i class="hotkey">E</i>xplore</button>
+          <button *ngIf="!isAttacking" routerLink="/"><i class="hotkey">R</i>eturn to base</button>
+          <button *ngIf="isAttacking" routerLink="/"><i class="hotkey">R</i>etreat</button>
         </div>
       </div>
     </template>
   </div>
   <div class="col-sm-4">
-    <template [ngIf]="player">
-      <div class="panel">
-        <h1 class="panel-title">{{player.name}}</h1>
-        <div class="panel-body">
-          <ul class="list">
-            <li>
-              CND <span class="list-descriptor" [class.danger]="player.getHealthPercentage() < 25">{{player.health}}/{{player.healthMax}}</span>
-            </li>
-            <li>
-              ATK <span class="list-descriptor">{{player.attack}}</span>
-            </li>
-            <li>
-              DEF <span class="list-descriptor">{{player.defense}}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="panel">
-        <h1 class="panel-title">Inventory</h1>
-        <div class="panel-body">
-          <ul class="list">
-            <li *ngFor="let slot of player.inventory.slots">
-              <div *ngIf="slot.item">
-                <button *ngIf="slot.item.isUsable" (click)="use(slot)">Use {{slot.item.name}}</button>
-                <span *ngIf="!slot.item.isUsable">{{slot.item.name}}</span>
-                <span class="list-descriptor">{{slot.quantity}}</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </template>
+    <station-player-stats></station-player-stats>
   </div>
 </div>

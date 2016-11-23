@@ -150,6 +150,14 @@ export class LocationComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+
+    // this.route.params.forEach((params: Params) => {
+    //   let id: string = params['id'];
+    //   this.locationService.getById(id).then(data => {
+    //     this.location = data;
+    //   });
+    // });
+
     this.locationService.getById(1).then(data => {
       this.location = data;
       this.location.enemies.forEach(enemy => {
