@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-sm-7">
     <template [ngIf]="location">
       <div class="panel">
         <h1 class="panel-title">{{location.name}}</h1>
@@ -8,6 +8,20 @@
             <p>
               {{location.percentExplored}}% explored
             </p>
+            <ul *ngIf="vessels" class="list">
+              <li *ngFor="let vessel of vessels">
+                <button *ngIf="!vessel.isOpen" (click)="openVessel(vessel)">Open {{vessel.name}}</button>
+                <div *ngIf="vessel.isOpen" class="panel">
+                  <h1 class="panel-title">{{vessel.name}}</h1>
+                  <div class="panel-body">
+                    (Empty)
+                  </div>
+                  <div class="panel-footer">
+                    <button (click)="closeVessel(vessel)">Close</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </template>
           <template [ngIf]="isAttacking">
             <label class="panel-label">Chance to defeat</label>
@@ -15,26 +29,23 @@
               Rover under attack!
             </p>
             <ul class="list">
-              <li *ngFor="let enemy of enemies">
-                <button class="button" (click)="attack(enemy)">Attack {{enemy.name}}</button>
-                <span *ngIf="isActive(enemy)">
-                  <span *ngIf="!getAttackStatus(enemy)">[Miss]</span>
-                  <span *ngIf="getAttackStatus(enemy)">>Hit<</span>
-                </span>
-                <span class="list-descriptor">{{getChanceToDefeat(enemy)}}%</span>
+              <li *ngFor="let encounter of enemyEncounters">
+                <button (click)="attack(encounter)">Attack {{encounter.character.name}}</button>
+                <span *ngIf="encounter.beingAttacked" class="label label-danger">MISS!</span>
+                <span class="list-descriptor">{{getChanceToDefeat(encounter.character)}}%</span>
               </li>
             </ul>
           </template>
         </div>
         <div class="panel-footer">
           <button *ngIf="!isAttacking" (click)="explore()" [disabled]="location.percentExplored >= 100"><i class="hotkey">E</i>xplore</button>
-          <button *ngIf="!isAttacking" routerLink="/"><i class="hotkey">R</i>eturn to base</button>
-          <button *ngIf="isAttacking" routerLink="/"><i class="hotkey">R</i>etreat</button>
+          <button *ngIf="!isAttacking" (click)="quit()"><i class="hotkey">R</i>eturn to base</button>
+          <button *ngIf="isAttacking" (click)="quit()"><i class="hotkey">R</i>etreat</button>
         </div>
       </div>
     </template>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-5">
     <station-player-stats></station-player-stats>
   </div>
 </div>

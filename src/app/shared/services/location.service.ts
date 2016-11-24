@@ -13,30 +13,30 @@ export class LocationService implements Crudable {
       name: 'Red Canyon',
       percentExplored: 0,
       enemies: [
-        new Enemy({
+        {
           attack: 4,
-          defense: 2,
+          defense: 3,
           health: 5,
           healthMax: 5,
           id: 1,
-          name: 'Ogre'
-        }),
-        new Enemy({
+          name: 'Trench Snake'
+        },
+        {
           attack: 1,
           defense: 1,
           health: 2,
           healthMax: 2,
           id: 2,
           name: 'Rat'
-        }),
-        new Enemy({
+        },
+        {
           attack: 7,
           defense: 10,
           health: 10,
           healthMax: 10,
           id: 3,
           name: 'Croag'
-        })
+        }
       ]
     }
   ];

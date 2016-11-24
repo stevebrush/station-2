@@ -10,3 +10,5 @@ export { InventorySlot } from './inventory-slot';
 export { Character } from './character';
 export { Enemy } from './enemy';
 export { Player } from './player';
+
+export { Vessel } from './vessel';

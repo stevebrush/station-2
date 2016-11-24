@@ -4,7 +4,7 @@
     <div class="panel-body">
       <ul class="list">
         <li>
-          CND <span class="list-descriptor" [class.danger]="player.getHealthPercentage() < 25">{{player.health}}/{{player.healthMax}}</span>
+          CND <span class="list-descriptor" [ngClass]="((player.getHealthPercentage() < 33) ? 'label label-danger' : '')">{{player.health}}/{{player.healthMax}}</span>
         </li>
         <li>
           ATK <span class="list-descriptor">{{player.attack}}</span>
@@ -14,6 +14,10 @@
         </li>
       </ul>
     </div>
+    <!-- <div class="panel-footer">
+      <button><i class="hotkey">R</i>epair</button>
+      <button><i class="hotkey">I</i>nv</button>
+    </div> -->
   </div>
   <div class="panel">
     <h1 class="panel-title">Inventory</h1>
