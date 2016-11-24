@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Enemy,
-         Location,
-         Player,
-         Character,
-         Item,
-         Inventory,
-         InventorySlot } from '../shared/classes';
-import { ItemService,
-         LocationService,
-         PlayerService } from '../shared/services';
+import { Player } from '../shared/classes';
+
+import { PlayerService } from '../shared/services';
 
 @Component({
   selector: 'station-player-stats',
@@ -18,14 +11,13 @@ import { ItemService,
 })
 export class PlayerStatsComponent implements OnInit {
   player: Player;
+  isInventoryOpen: boolean = false;
 
   constructor(
     private playerService: PlayerService) {}
 
-  public use(slot: InventorySlot<any>): void {
-    slot.item.actOn(this.player);
-    slot.modifyQuantity(-1);
-    this.player.inventory.clean();
+  public toggleInventory(): void {
+    this.isInventoryOpen = !this.isInventoryOpen;
   }
 
   public ngOnInit(): void {

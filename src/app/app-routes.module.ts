@@ -4,8 +4,8 @@ import { CanDeactivateGuard } from './can-deactivate-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', loadChildren: './home/home.module.ts#HomeModule' },
-  { path: 'location', loadChildren: './location/location.module.ts#LocationModule' },
+  { path: 'home', loadChildren: './+home/home.module.ts#HomeModule' },
+  { path: 'location', loadChildren: './+location/location.module.ts#LocationModule' },
   { path: '**', redirectTo: '/home' }
 ];
 

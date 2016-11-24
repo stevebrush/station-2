@@ -5,7 +5,11 @@ import { HomeRoutesModule } from './home-routes.module';
 import { PlayerStatsModule } from '../player-stats/player-stats.module';
 
 @NgModule({
-  imports: [SharedModule, HomeRoutesModule, PlayerStatsModule],
+  imports: [
+    SharedModule,
+    HomeRoutesModule,
+    PlayerStatsModule
+  ],
   declarations: [HomeComponent]
 })
 export class HomeModule { }

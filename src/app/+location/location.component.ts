@@ -138,12 +138,8 @@ export class LocationComponent implements OnInit {
     ];
   }
 
-  public openVessel(vessel: Vessel):void {
-    vessel.isOpen = true;
-  }
-
-  public closeVessel(vessel: Vessel):void {
-    vessel.isOpen = false;
+  public toggleVessel(vessel: Vessel):void {
+    vessel.isOpen = !vessel.isOpen;
   }
 
   public quit(): void {

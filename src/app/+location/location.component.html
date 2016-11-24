@@ -10,16 +10,13 @@
             </p>
             <ul *ngIf="vessels" class="list">
               <li *ngFor="let vessel of vessels">
-                <button *ngIf="!vessel.isOpen" (click)="openVessel(vessel)">Open {{vessel.name}}</button>
-                <div *ngIf="vessel.isOpen" class="panel">
-                  <h1 class="panel-title">{{vessel.name}}</h1>
-                  <div class="panel-body">
-                    (Empty)
-                  </div>
-                  <div class="panel-footer">
-                    <button (click)="closeVessel(vessel)">Close</button>
-                  </div>
-                </div>
+                <button (click)="toggleVessel(vessel)">Open {{vessel.name}}</button>
+                <station-inventory
+                  [isOpen]="vessel.isOpen"
+                  [inventory]="vessel.inventory"
+                  [owner]="vessel"
+                  (onClosed)="toggleVessel(vessel)">
+                </station-inventory>
               </li>
             </ul>
           </template>

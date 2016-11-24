@@ -14,23 +14,15 @@
         </li>
       </ul>
     </div>
-    <!-- <div class="panel-footer">
-      <button><i class="hotkey">R</i>epair</button>
-      <button><i class="hotkey">I</i>nv</button>
-    </div> -->
-  </div>
-  <div class="panel">
-    <h1 class="panel-title">Inventory</h1>
-    <div class="panel-body">
-      <ul class="list">
-        <li *ngFor="let slot of player.inventory.slots">
-          <div *ngIf="slot.item">
-            <button *ngIf="slot.item.isUsable" (click)="use(slot)">Use {{slot.item.name}}</button>
-            <span *ngIf="!slot.item.isUsable">{{slot.item.name}}</span>
-            <span class="list-descriptor">{{slot.quantity}}</span>
-          </div>
-        </li>
-      </ul>
+    <div class="panel-footer">
+      <!-- <button><i class="hotkey">R</i>epair</button> -->
+      <button (click)="toggleInventory()"><i class="hotkey">I</i>nv</button>
     </div>
   </div>
+  <station-inventory
+    [isOpen]="isInventoryOpen"
+    [inventory]="player.inventory"
+    [owner]="player"
+    (onClosed)="toggleInventory()">
+  </station-inventory>
 </template>
