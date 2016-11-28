@@ -1,4 +1,32 @@
 <div class="row">
+
+  <!-- RESEARCH -->
+  <div class="col-sm-12">
+    <div class="panel">
+      <h1 class="panel-title">Research</h1>
+      <div class="panel-body">
+        <table>
+          <tr>
+            <th>Isotope</th>
+            <th>Type</th>
+            <th>Cost</th>
+            <th>Progress</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let isotope of isotopes">
+            <td>{{isotope.name}}</td>
+            <td>{{isotope.type}}</td>
+            <td>{{isotope.cost.iodyte}}Io per second</td>
+            <td>{{timeRemaining(isotope)}}</td>
+            <td>
+              <button>Pause</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <!-- LAB -->
   <div class="col-sm-12">
     <div class="panel">
@@ -26,29 +54,4 @@
     </div>
   </div>
 
-  <div class="col-sm-12">
-    <div class="panel">
-      <h1 class="panel-title">Research</h1>
-      <div class="panel-body">
-        <table>
-          <tr>
-            <th>Isotope</th>
-            <th>Type</th>
-            <th>Cost</th>
-            <th>Progress</th>
-            <th></th>
-          </tr>
-          <tr *ngFor="let isotope of isotopes">
-            <td>{{isotope.name}}</td>
-            <td>{{isotope.type}}</td>
-            <td>{{isotope.cost}}</td>
-            <td>{{isotope.progress}}%</td>
-            <td>
-              <button>Pause</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
 </div>

@@ -7,10 +7,30 @@ import { Observable } from 'rxjs/Rx';
 export class LanderComponent implements OnInit {
   countdown: number = 90;
   countdownString: string = '';
-  turrets: any[] = [
+  rovers: any[] = [
     {
-      name: "Autocannon",
-      condition: 45
+      name: "Mark I",
+      assignment: "IDLE",
+      condition: 100,
+      isDeployed: false
+    },
+    {
+      name: "Mark I",
+      assignment: "IDLE",
+      condition: 12,
+      isDeployed: false
+    },
+    {
+      name: "Mark II",
+      assignment: "Mining Red Canyon",
+      condition: 86,
+      isDeployed: true
+    },
+    {
+      name: "Mark IV",
+      assignment: "Defending Station",
+      condition: 54,
+      isDeployed: true
     }
   ];
   systems: any[] = [
@@ -57,9 +77,9 @@ export class LanderComponent implements OnInit {
   ];
 
   private formatSeconds(seconds: number): string {
-      let date = new Date(1970, 0, 1);
-      date.setSeconds(seconds);
-      return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
+    let date = new Date(1970, 0, 1);
+    date.setSeconds(seconds);
+    return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
   }
 
   public ngOnInit(): void {

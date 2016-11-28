@@ -14,6 +14,7 @@ import { ItemService,
 
 interface EnemyEncounter {
   beingAttacked: boolean;
+  isTakingDamage: boolean;
   character: Enemy;
   isDefeated: boolean;
 }
@@ -41,17 +42,26 @@ export class LocationComponent implements OnInit {
     let attackRoll = Math.floor(Math.random() * 100) + 1;
 
     if (this.getChanceToDefeat(enemy) >= attackRoll) {
-      status.isDefeated = true;
-      this.enemyEncounters = this.enemyEncounters.filter(encounter => {
-        return (encounter.isDefeated === false);
-      });
-      if (this.enemyEncounters.length === 0) {
-        this.isAttacking = false;
+      status.character.modifyHealth(-this.player.attack);
+      status.isTakingDamage = true;
+      if (status.character.health === 0) {
+        status.isDefeated = true;
+        this.enemyEncounters = this.enemyEncounters.filter(encounter => {
+          return (encounter.isDefeated === false);
+        });
+        if (this.enemyEncounters.length === 0) {
+          this.isAttacking = false;
+        }
       }
+    } else {
+      status.isTakingDamage = false;
     }
 
     status.beingAttacked = true;
-    setTimeout(() => status.beingAttacked = false, 1000);
+    setTimeout(() => {
+      status.beingAttacked = false;
+      status.isTakingDamage = false;
+    }, 1000);
     this.player.modifyHealth(-enemy.attack);
 
     if (this.player.health === 0) {
@@ -113,7 +123,8 @@ export class LocationComponent implements OnInit {
         this.enemyEncounters.push({
           character: enemy,
           beingAttacked: false,
-          isDefeated: false
+          isDefeated: false,
+          isTakingDamage: false
         });
         --numEnemies;
       }

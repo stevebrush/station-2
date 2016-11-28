@@ -4,23 +4,28 @@ import { Component, OnInit } from '@angular/core';
   template: require('./depot.component.html')
 })
 export class DepotComponent implements OnInit {
-  quarries: any[] = [
+  inventory: any[] = [
     {
-      name: "The Wastes",
-      iodyte: 98740,
-      nitrium: 0,
-      salt: 0,
-      drones: 1
+      item: {
+        name: "Iodyte"
+      },
+      category: "Resource",
+      quantity: 142
     },
     {
-      name: "Red Canyon",
-      iodyte: 11500,
-      nitrium: 500,
-      salt: 0,
-      drones: 1
-    }
-  ];
-  inventory: any[] = [
+      item: {
+        name: "Nitrium"
+      },
+      category: "Resource",
+      quantity: 2352
+    },
+    {
+      item: {
+        name: "Salt"
+      },
+      category: "Resource",
+      quantity: 29
+    },
     {
       item: {
         name: "Strange fabric"
@@ -43,6 +48,6 @@ export class DepotComponent implements OnInit {
       quantity: 1
     }
   ];
-  
+
   public ngOnInit(): void { }
 }

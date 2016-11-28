@@ -28,7 +28,8 @@
             <ul class="list">
               <li *ngFor="let encounter of enemyEncounters">
                 <button (click)="attack(encounter)">Attack {{encounter.character.name}}</button>
-                <span *ngIf="encounter.beingAttacked" class="label label-danger">MISS!</span>
+                {{encounter.character.health}}
+                <span *ngIf="encounter.beingAttacked && !encounter.isTakingDamage" class="label label-danger">MISS!</span>
                 <span class="list-descriptor">{{getChanceToDefeat(encounter.character)}}%</span>
               </li>
             </ul>

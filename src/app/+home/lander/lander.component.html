@@ -1,54 +1,32 @@
 <div class="row">
 
-  <!-- COMMAND -->
-  <div class="col-sm-12">
-    <div class="panel">
-      <h1 class="panel-title">Command Module</h1>
-      <div class="panel-body">
-        <table>
-          <tr>
-            <td>Hull Condition</td>
-            <td><span class="label label-danger">14%</span></td>
-          </tr>
-          <tr>
-            <td>Defense Rating</td>
-            <td><span class="label label-danger">F</span></td>
-          </tr>
-        </table>
-        <p>
-          <button>Modify</button>
-          <button>Repair</button>
-        </p>
-        <hr>
-        <table>
-          <tr>
-            <th>Turret</th>
-            <th>CND</th>
-            <th></th>
-          </tr>
-          <tr *ngFor="let turret of turrets">
-            <td>{{turret.name}}</td>
-            <td>{{turret.condition}}%</td>
-            <td>
-              <button>Modify</button>
-              <button disabled>Repair</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-
   <!-- SYSTEMS -->
-  <div class="col-sm-12">
+  <div class="col-sm-6">
     <div class="panel">
       <h1 class="panel-title">Systems</h1>
       <div class="panel-body">
         <table>
           <tr *ngFor="let system of systems">
             <td>{{system.name}}</td>
-            <td class="text-muted">{{system.description}}</td>
             <td><span [ngClass]="((system.status.rating === 0) ? 'label label-danger' : '')">{{system.status.name}}</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROVERS -->
+  <div class="col-sm-6">
+    <div class="panel">
+      <h1 class="panel-title">Rovers</h1>
+      <div class="panel-body">
+        <table>
+          <tr *ngFor="let rover of rovers">
+            <td>{{rover.name}}</td>
+            <td>
+              <button>Modify</button>
+              <button routerLink="/location">Deploy</button>
+            </td>
           </tr>
         </table>
       </div>

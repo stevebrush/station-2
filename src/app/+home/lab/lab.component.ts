@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   template: require('./lab.component.html')
@@ -17,10 +18,40 @@ export class LabComponent implements OnInit {
     {
       name: "Micro-Crystaline",
       type: "Unknown",
-      cost: "4i per second",
-      progress: 56
+      secondsRemaining: 500,
+      cost: {
+        iodyte: 4
+      }
+    },
+    {
+      name: "Azure Isotope",
+      type: "Unknown",
+      secondsRemaining: 145,
+      cost: {
+        iodyte: 4
+      }
     }
   ];
-  
-  public ngOnInit(): void { }
+
+  countdown: number = 90;
+  countdownString: string = '';
+
+  private formatSeconds(seconds: number): string {
+    let date = new Date(1970, 0, 1);
+    date.setSeconds(seconds);
+    return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
+  }
+
+  public timeRemaining(isotope: any): string {
+    return this.formatSeconds(isotope.secondsRemaining);
+  }
+
+  public ngOnInit(): void {
+    let timer = Observable.timer(0, 1000);
+    timer.subscribe(t => {
+      this.isotopes.forEach((i) => {
+        i.secondsRemaining--;
+      });
+    });
+  }
 }
