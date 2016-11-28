@@ -1,0 +1,54 @@
+<div class="row">
+  <!-- LAB -->
+  <div class="col-sm-12">
+    <div class="panel">
+      <h1 class="panel-title">Build</h1>
+      <div class="panel-body">
+        <table>
+          <tr>
+            <th>Component</th>
+            <th>Description</th>
+            <th>Cost</th>
+            <th>Progress</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let component of components">
+            <td>{{component.name}}</td>
+            <td class="text-muted">{{component.description}}</td>
+            <td>{{component.cost}}</td>
+            <td>{{component.progress}}%</td>
+            <td>
+              <button [disabled]="component.isBuilding">Start</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="panel">
+      <h1 class="panel-title">Research</h1>
+      <div class="panel-body">
+        <table>
+          <tr>
+            <th>Isotope</th>
+            <th>Type</th>
+            <th>Cost</th>
+            <th>Progress</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let isotope of isotopes">
+            <td>{{isotope.name}}</td>
+            <td>{{isotope.type}}</td>
+            <td>{{isotope.cost}}</td>
+            <td>{{isotope.progress}}%</td>
+            <td>
+              <button>Pause</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,45 @@
-<div class="row">
-  <div class="col-sm-8">
-    <div class="panel">
-      <h1 class="panel-title">Halberd V</h1>
-      <div class="panel-body">
-        <button routerLink="/location">Wander the wastes...</button>
-        <ul class="list">
-          <li>
-            <button [routerLink]="['/location', 1]">Visit Dungeon #1</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <station-player-stats></station-player-stats>
-  </div>
+<div class="page-header">
+  <h1>S T A T I O N</h1>
+  <h4>Copyright (C) Square-Engine Corporation 1962</h4>
+  <!-- <p>
+    <span class="label label-danger blink">Station under attack!</span><br>
+    <span class="label label-danger">-16 uranium</span><br>
+    <span class="label label-danger">Time Remaining: {{countdownString}}</span>
+  </p> -->
+  <ul class="menu">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <button routerLink="/home">Command</button>
+    </li>
+    <li routerLinkActive="active">
+      <button routerLink="/home/factory">Factory</button>
+    </li>
+    <li routerLinkActive="active">
+      <button routerLink="/home/lab">Lab</button>
+    </li>
+    <li routerLinkActive="active">
+      <button routerLink="/home/depot">Depot</button>
+    </li>
+    <li routerLinkActive="active">
+      <button routerLink="/home/rovers">Rovers</button>
+    </li>
+  </ul>
+  <!-- <ul class="menu">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <button routerLink="/home">Lander</button>
+    </li>
+    <li routerLinkActive="active">
+      <button routerLink="/home/resources">Warehouse</button>
+    </li>
+    <li routerLinkActive="active">
+      <button routerLink="/home/factory">Factory</button>
+    </li>
+    <li routerLinkActive="active">
+      <button routerLink="/home/rovers">Garage</button>
+    </li>
+  </ul> -->
 </div>
+<dl *ngFor="let resource of resources">
+  <dt>{{resource.name}}</dt>
+  <dd>{{resource.quantity}}</dd>
+</dl>
+<router-outlet></router-outlet>

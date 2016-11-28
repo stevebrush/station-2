@@ -1,0 +1,16 @@
+.label {
+  display: inline-block;
+  padding: 0 10px;
+
+  &.label-danger {
+    background-color: $color-danger;
+    color: #fff;
+  }
+
+  .button > &,
+  button > & {
+    margin: 0;
+    margin-right: -12px;
+    margin-left: 10px;
+  }
+}

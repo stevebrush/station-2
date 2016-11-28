@@ -23,6 +23,11 @@ button,
     cursor: pointer;
   }
 
+  &.button-block {
+    display: block;
+    width: 100%;
+  }
+
   > .hotkey {
     text-decoration: underline;
     text-shadow: none;
@@ -55,7 +60,7 @@ button,
   // }
 
   &[disabled] {
-    opacity: .25;
+    opacity: .45;
     cursor: default;
   }
 }

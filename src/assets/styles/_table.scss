@@ -1,0 +1,50 @@
+table {
+  width: 100%;
+  margin: 0;
+
+  > tbody {
+    > tr {
+      > td,
+      > th {
+        padding: 2px 10px;
+        vertical-align: top;
+
+        // .panel .panel & {
+        //   padding-top: 2px;
+        //   padding-bottom: 2px;
+        // }
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+
+      > th {
+        background-color: transparent;
+        color: $color-highlight;
+        text-align: left;
+      }
+
+      &:hover {
+        background-color: $color-secondary-muted;
+      }
+    }
+  }
+
+  .panel-body > & {
+    > tbody {
+      > tr {
+        > td,
+        > th {
+          &:first-child {
+            padding-left: $padding-size;
+          }
+
+          &:last-child {
+            padding-right: $padding-size;
+          }
+        }
+      }
+    }
+  }
+}

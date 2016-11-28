@@ -1,5 +1,5 @@
 <div class="panel" *ngIf="isOpen">
-  <h1 class="panel-title">Inventory</h1>
+  <h1 class="panel-title">{{owner.name}}</h1>
   <div class="panel-body">
     <ul class="list" *ngIf="inventory.slots">
       <li *ngFor="let slot of inventory.slots">

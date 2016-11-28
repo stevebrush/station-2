@@ -10,7 +10,7 @@ export class LocationService implements Crudable {
   public locations: Location[] = [
     <Location>{
       id: 1,
-      name: 'Red Canyon',
+      name: 'The Wastes',
       percentExplored: 0,
       enemies: [
         {

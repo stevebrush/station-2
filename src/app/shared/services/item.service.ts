@@ -11,11 +11,11 @@ import { Crudable } from '../interfaces';
 export class ItemService implements Crudable {
   public items: Item[] = [
     new Currency({
-      name: "Cogs",
+      name: "Salt",
       id: 1
     }),
     new Salve({
-      name: "Scrap",
+      name: "Repair Kit",
       id: 2
     })
   ];

@@ -1,18 +1,17 @@
 .list {
   > li {
     margin: 2px 0;
-    &:hover {}
+
+    &:hover {
+      background-color: $color-secondary-muted;
+    }
   }
 
-  .panel-body > & {
-    margin-left: -$padding-size/2;
-    margin-right: -$padding-size/2;
-
+  .panel-body > &,
+  .panel-body > .row > div[class^="col-"] > & {
     > li {
-      padding-left: $padding-size/2;
-      padding-right: $padding-size/2;
-
-      > .button {}
+      padding-left: $padding-size;
+      padding-right: $padding-size;
     }
   }
 }

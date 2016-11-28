@@ -23,8 +23,8 @@ $panel-offset: -12px;
   padding: 0 ($padding-size / 2);
   position: absolute;
   top: $panel-offset;
-  left: $padding-size - ($padding-size / 2);
-  color: $color-highlight;
+  left: $padding-size - ($padding-size / 2) + 4;
+  text-transform: uppercase;
 }
 
 .panel-label {
@@ -37,23 +37,50 @@ $panel-offset: -12px;
 
 .panel-body {
   padding-top: $padding-size;
-  padding-right: $padding-size;
-  padding-left: $padding-size;
-  padding-bottom: $padding-size;
+  padding-bottom: $padding-size + 4;
+  padding-left: 4px;
+  padding-right: 4px;
 
   > *:last-child {
     margin-bottom: 0;
+  }
+
+  & > p,
+  & > h4 {
+		padding-left: $padding-size;
+		padding-right: $padding-size;
+	}
+
+  > .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  > .panel {
+    margin-left: $padding-size - 2;
+    margin-right: $padding-size - 2;
+    margin-bottom: $padding-size;
+    margin-top: $padding-size * 2;
+
+    &:before {
+      display: none;
+    }
+
+    + .panel {
+      margin-top: $padding-size * 2;
+    }
   }
 }
 
 .panel-footer {
   background-color: $color-secondary;
-  padding: 0;
-  position: absolute;
   bottom: $panel-offset;
-  left: $padding-size;
+  left: $padding-size + 4;
+  position: absolute;
+  display: inline-block;
+  padding: 0;
 
-  > .button {
-
+  > span {
+    margin-right: ($padding-size / 2);
   }
 }
