@@ -22,7 +22,7 @@ export class LocationService implements Crudable {
           name: 'Trench Snake'
         },
         {
-          attack: 1,
+          attack: 8,
           defense: 1,
           health: 2,
           healthMax: 2,

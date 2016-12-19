@@ -1,0 +1,11 @@
+.battle-pad {
+  height: 200px;
+  border: 1px solid $color-primary;
+  background-color: darken($color-primary, 40%);
+  cursor: pointer;
+  margin: $padding-size;
+
+  &.is-defending {
+    border: 6px solid $color-primary;
+  }
+}

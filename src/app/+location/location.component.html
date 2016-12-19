@@ -10,7 +10,7 @@
             </p>
             <ul *ngIf="vessels" class="list">
               <li *ngFor="let vessel of vessels">
-                <button (click)="toggleVessel(vessel)">Open {{vessel.name}}</button>
+                <button *ngIf="!vessel.isOpen" (click)="toggleVessel(vessel)">Open {{vessel.name}}</button>
                 <station-inventory
                   [isOpen]="vessel.isOpen"
                   [inventory]="vessel.inventory"
@@ -21,24 +21,44 @@
             </ul>
           </template>
           <template [ngIf]="isAttacking">
-            <label class="panel-label">Chance to defeat</label>
             <p class="blink">
               Rover under attack!
             </p>
-            <ul class="list">
-              <li *ngFor="let encounter of enemyEncounters">
-                <button (click)="attack(encounter)">Attack {{encounter.character.name}}</button>
-                {{encounter.character.health}}
-                <span *ngIf="encounter.beingAttacked && !encounter.isTakingDamage" class="label label-danger">MISS!</span>
-                <span class="list-descriptor">{{getChanceToDefeat(encounter.character)}}%</span>
-              </li>
-            </ul>
+            <table>
+              <tr *ngFor="let encounter of enemyEncounters">
+                <td>{{encounter.character.name}}</td>
+                <td>
+                  <station-meter
+                    [percentage]="encounter.attackTimerPercentage">
+                  </station-meter>
+                </td>
+                <td><span *ngIf="encounter.beingAttacked && !encounter.isTakingDamage" class="label label-danger">MISS!</span></td>
+                <td>{{getChanceToDefeat(encounter.character)}}%</td>
+                <td>
+                  <station-meter
+                    (click)="attack(encounter)"
+                    [percentage]="encounter.character.getHealthPercentage()"
+                    [useSecondaryGuage]="true">
+                  </station-meter>
+                </td>
+              </tr>
+            </table>
           </template>
+          <div class="battle-pad"
+            (mousedown)="mouseDown()"
+            (mouseup)="mouseUp()"
+            (mousemove)="mouseMove($event)"
+            (mouseleave)="mouseLeave()"
+            [ngClass]="((isMouseDown) ? 'is-defending' : '')">
+          </div>
+          <p>
+            [SPACE] Shields
+          </p>
         </div>
         <div class="panel-footer">
-          <button *ngIf="!isAttacking" (click)="explore()" [disabled]="location.percentExplored >= 100"><i class="hotkey">E</i>xplore</button>
-          <button *ngIf="!isAttacking" (click)="quit()"><i class="hotkey">R</i>eturn to base</button>
-          <button *ngIf="isAttacking" (click)="quit()"><i class="hotkey">R</i>etreat</button>
+          <button *ngIf="!isAttacking" (click)="explore()" [disabled]="location.percentExplored >= 100">Explore</button>
+          <button *ngIf="!isAttacking" (click)="quit()">Return to base</button>
+          <button *ngIf="isAttacking" (click)="quit()">Retreat</button>
         </div>
       </div>
     </template>

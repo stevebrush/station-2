@@ -1,13 +1,13 @@
-$color-primary: #0f0;
+$color-primary: #ccc;
 $color-primary-muted: darken($color-primary, 20%);
 $color-secondary: #000;
 $color-secondary-muted: darken($color-secondary, 10%);
-$color-danger: #f00;
+$color-danger: #ccc;
 $color-accent: #000;
-$color-highlight: #fff;
+$color-highlight: #ccc;
 
-$padding-size: 25px;
+$padding-size: 10px;
 
-$font-size: 25px;
-$font-family: 'Inconsolata', monospace;
-$line-height: 1.2em;
+$font-size: 12px;
+$font-family: 'C64 Pro', 'Inconsolata', monospace;
+$line-height: 1em;

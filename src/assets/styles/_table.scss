@@ -26,7 +26,10 @@ table {
       }
 
       &:hover {
-        background-color: $color-secondary-muted;
+        > td {
+          background-color: $color-primary;
+          color: $color-secondary;
+        }
       }
     }
   }

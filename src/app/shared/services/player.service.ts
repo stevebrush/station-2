@@ -7,6 +7,8 @@ export class PlayerService {
   private player: Player = new Player({
     attack: 2,
     defense: 2,
+    energy: 50,
+    energyMax: 50,
     health: 35,
     healthMax: 35,
     id: 0,

@@ -3,7 +3,8 @@
     margin: 2px 0;
 
     &:hover {
-      background-color: $color-secondary-muted;
+      background-color: $color-primary;
+      color: $color-secondary;
     }
   }
 

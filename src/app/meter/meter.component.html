@@ -1,0 +1,4 @@
+<div class="meter">
+  <div class="guage" [style.width]="percentage + '%'"></div>
+  <div *ngIf="useSecondaryGuage" class="guage" [style.width]="originalPercentage + '%'"></div>
+</div>
