@@ -19,6 +19,10 @@ export class PlayerService {
       }),
       new InventorySlot<any>({
         itemId: 2,
+        quantity: 65
+      }),
+      new InventorySlot<any>({
+        itemId: 4,
         quantity: 3
       })
     ]),

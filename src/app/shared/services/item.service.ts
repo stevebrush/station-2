@@ -14,9 +14,17 @@ export class ItemService implements Crudable {
       name: "Salt",
       id: 1
     }),
+    new Currency({
+      name: "Iodyte",
+      id: 2
+    }),
+    new Currency({
+      name: "Nitrium",
+      id: 3
+    }),
     new Salve({
       name: "Repair Kit",
-      id: 2
+      id: 4
     })
   ];
 

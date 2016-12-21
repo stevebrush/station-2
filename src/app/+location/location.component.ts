@@ -11,7 +11,8 @@ import { Enemy,
 
 import { ItemService,
          LocationService,
-         PlayerService } from '../shared/services';
+         PlayerService,
+         VesselService } from '../shared/services';
 
 interface EnemyEncounter {
   attackTimer: number;
@@ -31,7 +32,7 @@ interface EnemyEncounter {
 export class LocationComponent implements OnInit {
   public isAttacking: boolean = false;
   public location: Location;
-  public enemyEncounters: EnemyEncounter[];
+  public enemyEncounters: EnemyEncounter[] = [];
   public player: Player;
   public vessels: Vessel[];
   private mouseDownSubscription: Subscription;
@@ -43,6 +44,7 @@ export class LocationComponent implements OnInit {
     private itemService: ItemService,
     private locationService: LocationService,
     private playerService: PlayerService,
+    private vesselService: VesselService,
     private router: Router) { }
 
   public attack(status: EnemyEncounter): void {
@@ -185,27 +187,14 @@ export class LocationComponent implements OnInit {
   }
 
   public getVessels(): void {
-    this.vessels = [
-      new Vessel({
-        name: 'Desk',
-        inventory: new Inventory([
-          new InventorySlot<any>({
-            itemId: 1,
-            quantity: 5
-          }),
-          new InventorySlot<any>({
-            itemId: 2,
-            quantity: 3
-          })
-        ])
-      })
-    ];
+    this.vesselService.getVessel().then(data => {
+      this.vessels = [data];
+    });
   }
 
   public toggleVessel(vessel: Vessel):void {
     vessel.isOpen = !vessel.isOpen;
   }
-
 
   @HostListener('document:keypress', ['$event'])
   public onKeyPress(event: KeyboardEvent):void {

@@ -1,4 +1,4 @@
-$panel-offset: -18px;
+$panel-offset: -($padding-size / 2);
 
 .panel {
   border: 4px solid $color-primary;
@@ -12,7 +12,7 @@ $panel-offset: -18px;
   padding: 0 ($padding-size / 2);
   position: absolute;
   top: $panel-offset;
-  left: $padding-size - ($padding-size / 2) + 4;
+  left: ($padding-size / 2);
   text-transform: uppercase;
 }
 
@@ -25,10 +25,7 @@ $panel-offset: -18px;
 }
 
 .panel-body {
-  padding-top: $padding-size;
-  padding-bottom: $padding-size + 4;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding: $padding-size 0;
 
   > *:last-child {
     margin-bottom: 0;

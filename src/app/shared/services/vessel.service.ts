@@ -4,6 +4,7 @@ import { ItemService } from './index';
 
 @Injectable()
 export class VesselService {
+
   private vessels: Vessel[] = [
     new Vessel({
       inventory: new Inventory([
@@ -16,7 +17,7 @@ export class VesselService {
           quantity: 3
         })
       ]),
-      name: 'Desk'
+      name: 'Rubble'
     })
   ];
 

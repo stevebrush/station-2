@@ -1,3 +1,8 @@
+<dl *ngFor="let resource of resources">
+  <dt>{{resource.name}}</dt>
+  <dd>{{resource.quantity}}</dd>
+</dl>
+
 <div class="row">
 
   <!-- RESEARCH -->
@@ -16,7 +21,7 @@
           <tr *ngFor="let isotope of isotopes">
             <td>{{isotope.name}}</td>
             <td>{{isotope.type}}</td>
-            <td>{{isotope.cost.iodyte}}Io per second</td>
+            <td>{{isotope.cost.iodyte}} Io per second</td>
             <td>{{timeRemaining(isotope)}}</td>
             <td>
               <button>Pause</button>
@@ -46,7 +51,8 @@
             <td>{{component.cost}}</td>
             <td>{{component.progress}}%</td>
             <td>
-              <button [disabled]="component.isBuilding">Start</button>
+              <button *ngIf="component.isBuilding">Pause</button>
+              <button *ngIf="!component.isBuilding">Start</button>
             </td>
           </tr>
         </table>

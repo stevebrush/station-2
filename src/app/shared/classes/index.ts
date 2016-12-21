@@ -12,3 +12,4 @@ export { Enemy } from './enemy';
 export { Player } from './player';
 
 export { Vessel } from './vessel';
+export { Rover } from './rover';

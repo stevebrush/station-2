@@ -24,13 +24,27 @@ export class LabComponent implements OnInit {
       }
     },
     {
-      name: "Azure Isotope",
+      name: "Azure Lythate",
       type: "Unknown",
       secondsRemaining: 145,
       cost: {
         iodyte: 4
       }
     }
+  ];
+  resources: any[] = [
+    {
+      name: "Iodyte",
+      quantity: 523
+    },
+    {
+      name: "Nitrium",
+      quantity: 243
+    },
+    {
+      name: "Salt",
+      quantity: 19
+    },
   ];
 
   countdown: number = 90;

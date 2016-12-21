@@ -24,6 +24,10 @@ export class InventoryComponent implements OnInit{
     this.onClosed.emit(false);
   }
 
+  public take(): void {
+
+  }
+
   public use(slot: InventorySlot<any>): void {
     slot.item.actOn(this.owner);
     slot.modifyQuantity(-1);

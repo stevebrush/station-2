@@ -9,11 +9,6 @@ table {
         padding: 2px 10px;
         vertical-align: top;
 
-        // .panel .panel & {
-        //   padding-top: 2px;
-        //   padding-bottom: 2px;
-        // }
-
         &:last-child {
           text-align: right;
         }
@@ -25,8 +20,8 @@ table {
         text-align: left;
       }
 
-      &:hover {
-        > td {
+      &.selected {
+        > td, th {
           background-color: $color-primary;
           color: $color-secondary;
         }

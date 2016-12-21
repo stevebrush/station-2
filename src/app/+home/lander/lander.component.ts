@@ -1,38 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { RoverService } from '../../shared/services';
+import { Rover } from '../../shared/classes';
 
 @Component({
   template: require('./lander.component.html')
 })
-export class LanderComponent implements OnInit {
-  countdown: number = 90;
-  countdownString: string = '';
-  rovers: any[] = [
-    {
-      name: "Mark I",
-      assignment: "IDLE",
-      condition: 100,
-      isDeployed: false
-    },
-    {
-      name: "Mark I",
-      assignment: "IDLE",
-      condition: 12,
-      isDeployed: false
-    },
-    {
-      name: "Mark II",
-      assignment: "Mining Red Canyon",
-      condition: 86,
-      isDeployed: true
-    },
-    {
-      name: "Mark IV",
-      assignment: "Defending Station",
-      condition: 54,
-      isDeployed: true
-    }
-  ];
+export class LanderComponent implements OnInit, OnDestroy {
+
+  navigationIndex: number = 0;
+  selectedRover: Rover;
+  rovers: Rover[] = [];
   systems: any[] = [
     {
       name: "Communications",
@@ -76,17 +55,60 @@ export class LanderComponent implements OnInit {
     }
   ];
 
-  private formatSeconds(seconds: number): string {
-    let date = new Date(1970, 0, 1);
-    date.setSeconds(seconds);
-    return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
+  constructor(private roverService: RoverService, private router: Router) { }
+
+  @HostListener('document:keydown', ['$event'])
+  public onKeyDown(event: KeyboardEvent):boolean {
+    let keys = [38, 40];
+    if (keys.indexOf(event.which) > -1) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  public onKeyUp(event: KeyboardEvent):void {
+    event.preventDefault();
+
+    if (this.selectedRover) {
+      return;
+    }
+    console.log("Keyup:", event.which);
+    switch (event.which) {
+
+      // UP
+      case 38:
+      this.navigationIndex--;
+      if (this.navigationIndex < 0) {
+        this.navigationIndex = 0;
+      }
+      break;
+
+      // DOWN
+      case 40:
+      this.navigationIndex++;
+      if (this.navigationIndex > this.rovers.length - 1) {
+        this.navigationIndex = this.rovers.length - 1;
+      }
+      break;
+
+      // ENTER
+      case 13:
+      this.selectedRover = this.rovers[this.navigationIndex];
+      this.router.navigate(['home/rover']);
+      break;
+    }
+    console.log("Navigation index:", this.navigationIndex);
   }
 
   public ngOnInit(): void {
-    let timer = Observable.timer(0, 1000);
-    timer.subscribe(t => {
-      this.countdown--;
-      this.countdownString = this.formatSeconds(this.countdown);
+    this.roverService.getAll().then((data) => {
+      this.rovers = data;
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.roverService.activeRover = this.selectedRover;
   }
 }
