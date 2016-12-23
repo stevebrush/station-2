@@ -1,20 +1,21 @@
-.menu {
-  margin-top: $padding-size;
-
+ul.menu {
   > li {
-    display: inline-block;
-    margin: 0 5px;
-
     > a,
-    > button {}
+    > button {
+      color: $color-primary;
+      text-decoration: none;
+      padding-left: $padding-size;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      display: block;
+    }
 
     &.active {
       > a,
-      > button,
-      > .button {
-          background-color: $color-highlight;
-          color: $color-secondary;
-        }
+      > button {
+        background-color: $color-primary;
+        color: $color-secondary;
+      }
     }
   }
 }

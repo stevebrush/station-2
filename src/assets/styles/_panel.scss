@@ -3,8 +3,7 @@ $panel-offset: -($padding-size / 2);
 .panel {
   border: 4px solid $color-primary;
   position: relative;
-  margin-bottom: 48px;
-  margin-top: $padding-size;
+  margin-bottom: 2em;
 }
 
 .panel-title {
@@ -31,10 +30,15 @@ $panel-offset: -($padding-size / 2);
     margin-bottom: 0;
   }
 
-  & > p,
-  & > h4 {
-		padding-left: $padding-size;
-		padding-right: $padding-size;
+  > p,
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
+		margin-left: $padding-size;
+		margin-right: $padding-size;
 	}
 
   > .row {

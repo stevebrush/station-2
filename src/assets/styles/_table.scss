@@ -20,7 +20,7 @@ table {
         text-align: left;
       }
 
-      &.selected {
+      &.active {
         > td, th {
           background-color: $color-primary;
           color: $color-secondary;

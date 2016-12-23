@@ -12,6 +12,9 @@ import { ItemService,
   imports: [BrowserModule, AppRoutesModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [Title, ItemService, LocationService, PlayerService, VesselService, RoverService]
+  providers: [
+    Title, ItemService, LocationService, PlayerService,
+    VesselService, RoverService
+  ]
 })
 export class AppModule { }

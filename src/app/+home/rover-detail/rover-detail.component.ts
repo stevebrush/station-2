@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Rover } from '../../shared/classes';
 import { RoverService } from '../../shared/services';
@@ -8,13 +9,22 @@ import { RoverService } from '../../shared/services';
   template: require('./rover-detail.component.html')
 })
 export class RoverDetailComponent implements OnInit {
+  public rover: Rover;
 
-  @Input()
-  rover: Rover;
-
-  constructor(private roverService: RoverService) { }
+  constructor(
+    private roverService: RoverService,
+    private router: Router) { }
 
   public ngOnInit(): void {
-    this.rover = this.roverService.activeRover;
+
+    this.roverService.getActiveRover().then((rover) => {
+      console.log("ROVER", rover);
+      if (!rover) {
+        this.router.navigate(['home']);
+        return;
+      }
+
+      this.rover = rover;
+    });
   }
 }

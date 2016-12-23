@@ -1,33 +1,24 @@
-<div class="row">
-
-  <!-- ROVERS -->
-  <div class="col-sm-7">
-    <div class="panel">
-      <h1 class="panel-title">Rovers</h1>
-      <div class="panel-body">
-        <table>
-          <tr *ngFor="let rover of rovers; let i = index" [ngClass]="{'selected': navigationIndex === i}">
-            <td>{{rover.name}}</td>
-            <td>Level {{rover.level}}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+<!-- <div class="panel">
+  <h1 class="panel-title">Menu</h1>
+  <div class="panel-body">
+    <ul *stationKeyNavigator="pages" (onSelection)="visitPage($event)">
+      <li *ngFor="let page of pages" [stationKeyNavigatorActive]="'active'">
+        <button>{{page.name}}</button>
+      </li>
+    </ul>
   </div>
+</div> -->
 
-  <!-- SYSTEMS -->
-  <div class="col-sm-5">
-    <div class="panel">
-      <h1 class="panel-title">Systems</h1>
-      <div class="panel-body">
-        <table>
-          <tr *ngFor="let system of systems">
-            <td>{{system.name}}</td>
-            <td><span [ngClass]="((system.status.rating === 0) ? 'label label-danger' : '')">{{system.status.name}}</span></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+<div class="panel">
+  <h1 class="panel-title">Rovers</h1>
+  <div class="panel-body">
+    <station-key-navigator [model]="rovers" (onSelection)="selectRover($event)">
+      <table>
+        <tr *ngFor="let rover of rovers" stationKeyNavigatorActive>
+          <td>{{rover.name}}</td>
+          <td>Level {{rover.level}}</td>
+        </tr>
+      </table>
+    </station-key-navigator>
   </div>
-
 </div>

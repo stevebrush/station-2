@@ -1,8 +1,103 @@
-<div class="modal" *ngIf="rover">
-  <div class="panel">
-    <h1 class="panel-title">{{rover.name}}</h1>
-    <div class="panel-body">
-      <button routerLink="/location">Deploy</button>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="panel" *ngIf="rover">
+      <h1 class="panel-title">{{rover.name}}</h1>
+      <div class="panel-body">
+        <ul class="menu">
+          <li>
+            <a href>Equipment</a>
+          </li>
+          <li>
+            <a href>Status</a>
+          </li>
+          <li>
+            <a href>Deploy</a>
+          </li>
+          <li>
+            <a href>Back</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-8">
+    <div class="panel">
+      <h1 class="panel-title">Equipment</h1>
+      <div class="panel-body">
+        <table>
+          <tr class="active">
+            <td>
+              Arm 1
+            </td>
+            <td>
+              Laser Rifle
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Arm 2
+            </td>
+            <td>
+              (None)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Launcher
+            </td>
+            <td>
+              Pulse Grenade x2
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Storage Slot 1
+            </td>
+            <td>
+              Damage Coupler x3
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Storage Slot 2
+            </td>
+            <td>
+              Energy Recycler
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Chasis
+            </td>
+            <td>
+              (Default)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Propulsion
+            </td>
+            <td>
+              Polytires
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- <ul class="list" *ngIf="rover.inventory.slots">
+  <li *ngFor="let slot of rover.inventory.slots">
+    <div *ngIf="slot.item">
+      {{slot.item.name}}
+      <span class="list-descriptor">{{slot.quantity}}</span>
+    </div>
+  </li>
+</ul>
+<p *ngIf="!rover.inventory.slots">
+  (Empty)
+</p>
+<button routerLink="/location">Deploy</button> -->
