@@ -1,0 +1,13 @@
+<div class="panel">
+  <h1 class="panel-title">Rovers</h1>
+  <div class="panel-body">
+    <station-key-navigator [model]="rovers" (onSelection)="selectRover($event)" (onGoBack)="goBack()">
+      <table>
+        <tr *ngFor="let rover of rovers" stationKeyNavigatorItem>
+          <td>{{rover.name}}</td>
+          <td>Level {{rover.level}}</td>
+        </tr>
+      </table>
+    </station-key-navigator>
+  </div>
+</div>

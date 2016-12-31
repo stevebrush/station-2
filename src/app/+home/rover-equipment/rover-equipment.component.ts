@@ -5,25 +5,37 @@ import { Rover } from '../../shared/classes';
 import { RoverService } from '../../shared/services';
 
 @Component({
-  selector: 'station-rover-detail',
-  template: require('./rover-detail.component.html')
+  template: require('./rover-equipment.component.html')
 })
-export class RoverDetailComponent implements OnInit {
-  public rover: Rover;
+export class RoverEquipmentComponent implements OnInit {
+  rover: Rover;
+  armaments: any[] = [
+    {
+      name: "Left Arm",
+      item: {
+        name: "Laser Rifle"
+      }
+    }
+  ];
 
   constructor(
     private roverService: RoverService,
     private router: Router) { }
 
-  public ngOnInit(): void {
+  selectArmament(armament: any): void {
+    console.log("Armament selected:", armament.name);
+  }
 
+  goBack(): void {
+    this.router.navigate(['home/rover']);
+  }
+
+  ngOnInit(): void {
     this.roverService.getActiveRover().then((rover) => {
-      console.log("ROVER", rover);
       if (!rover) {
         this.router.navigate(['home']);
         return;
       }
-
       this.rover = rover;
     });
   }

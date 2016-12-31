@@ -4,24 +4,27 @@ import { HomeComponent } from './home.component';
 import { HomeRoutesModule } from './home-routes.module';
 import { PlayerStatsModule } from '../player-stats/player-stats.module';
 import { InventoryModule } from '../inventory/inventory.module';
+import { KeyNavigatorModule } from '../key-navigator/key-navigator.module';
 
-import { LanderComponent } from './lander/lander.component';
-import { RoverDetailComponent } from './rover-detail/rover-detail.component';
-import { KeyNavigatorComponent, KeyNavigatorActiveDirective } from '../shared/directives/key-navigator.directive';
+import { RoversComponent } from './rovers/rovers.component';
+import { RoverMenuComponent } from './rover-menu/rover-menu.component';
+import { RoverEquipmentComponent } from './rover-equipment/rover-equipment.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @NgModule({
   imports: [
     SharedModule,
     HomeRoutesModule,
     PlayerStatsModule,
-    InventoryModule
+    InventoryModule,
+    KeyNavigatorModule
   ],
   declarations: [
     HomeComponent,
-    LanderComponent,
-    RoverDetailComponent,
-    KeyNavigatorComponent,
-    KeyNavigatorActiveDirective
+    RoversComponent,
+    RoverMenuComponent,
+    RoverEquipmentComponent,
+    MainMenuComponent
   ]
 })
 export class HomeModule { }

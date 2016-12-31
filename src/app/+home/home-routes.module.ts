@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { LanderComponent } from './lander/lander.component';
-import { RoverDetailComponent } from './rover-detail/rover-detail.component';
+import { RoversComponent } from './rovers/rovers.component';
+import { RoverEquipmentComponent } from './rover-equipment/rover-equipment.component';
+import { RoverMenuComponent } from './rover-menu/rover-menu.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent,
     children: [
-      { path: '', component: LanderComponent },
-      { path: 'rover', component: RoverDetailComponent }
+      { path: '', component: MainMenuComponent },
+      { path: 'rovers', component: RoversComponent },
+      { path: 'rover', component: RoverMenuComponent },
+      { path: 'rover-equipment', component: RoverEquipmentComponent }
     ]
   }
 ];

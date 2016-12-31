@@ -1,0 +1,23 @@
+station-key-navigator {
+  display: block;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  > ul.key-navigator-legend {
+    padding-right: $padding-size;
+    margin-top: $padding-size;
+    margin-bottom: -$padding-size;
+    background-color: darken($color-primary, 30%);
+    color: $color-secondary;
+    padding-top: 4px;
+    text-align: center;
+    > li {
+      display: inline;
+      margin: 0 ($padding-size/2)
+    }
+  }
+}

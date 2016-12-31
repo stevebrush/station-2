@@ -1,5 +1,3 @@
-export { Location } from './location';
-
 export { Item } from './item';
 export { Currency } from './currency';
 export { Salve } from './salve';

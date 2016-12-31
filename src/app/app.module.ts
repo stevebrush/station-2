@@ -3,17 +3,24 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutesModule } from './app-routes.module';
 import { ItemService,
-         LocationService,
          PlayerService,
          VesselService,
          RoverService } from './shared/services';
 
 @NgModule({
-  imports: [BrowserModule, AppRoutesModule],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutesModule
+  ],
+  declarations: [
+    AppComponent
+  ],
+  exports: [],
+  bootstrap: [
+    AppComponent
+  ],
   providers: [
-    Title, ItemService, LocationService, PlayerService,
+    Title, ItemService, PlayerService,
     VesselService, RoverService
   ]
 })
