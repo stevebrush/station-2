@@ -1,0 +1,22 @@
+<div class="panel">
+  <h1 class="panel-title">{{enemy?.name}}</h1>
+  <div class="panel-body">
+    <ul class="cards">
+      <li *ngFor="let action of enemy?.combos">
+        <div class="card">{{action.name}}</div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="panel">
+  <h1 class="panel-title">{{rover?.name}}</h1>
+  <div class="panel-body">
+    <station-key-navigator [model]="actions" (onSelection)="do($event)" (onGoBack)="goBack()">
+      <ul class="menu">
+        <li *ngFor="let action of actions" stationKeyNavigatorItem>
+          <a href>{{action.name}}</a>
+        </li>
+      </ul>
+    </station-key-navigator>
+  </div>
+</div>

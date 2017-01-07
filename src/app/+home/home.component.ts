@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  template: require('./home.component.html')
+  template: `<router-outlet></router-outlet>`
 })
 export class HomeComponent implements OnInit {
   ngOnInit(): void {}

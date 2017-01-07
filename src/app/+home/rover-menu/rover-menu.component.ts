@@ -23,16 +23,16 @@ import { RoverService } from '../../shared/services';
 export class RoverMenuComponent {
   pages: any[] = [
     {
+      name: "Deploy",
+      route: 'location'
+    },
+    {
       name: "Equipment",
       route: 'home/rover-equipment'
     },
     {
       name: "Status",
       route: 'home/rover-status'
-    },
-    {
-      name: "Deploy",
-      route: 'location'
     }
   ];
   rover: Rover;

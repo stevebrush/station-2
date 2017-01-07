@@ -1,0 +1,12 @@
+<div class="panel">
+  <h1 class="panel-title">Dungeon</h1>
+  <div class="panel-body">
+    <station-key-navigator [model]="enemies" (onSelection)="engage($event)" (onGoBack)="goBack()">
+      <ul class="menu">
+        <li *ngFor="let enemy of enemies" stationKeyNavigatorItem>
+          <a href>{{enemy.name}}</a>
+        </li>
+      </ul>
+    </station-key-navigator>
+  </div>
+</div>

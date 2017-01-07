@@ -5,7 +5,8 @@ import { AppRoutesModule } from './app-routes.module';
 import { ItemService,
          PlayerService,
          VesselService,
-         RoverService } from './shared/services';
+         RoverService,
+         BattleService} from './shared/services';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { ItemService,
   ],
   providers: [
     Title, ItemService, PlayerService,
-    VesselService, RoverService
+    VesselService, RoverService, BattleService
   ]
 })
 export class AppModule { }
