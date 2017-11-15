@@ -20,14 +20,52 @@ ul.cards {
     &:last-child {
       margin-right: -5px;
     }
+  }
+}
 
-    .card {
-      border: 2px solid $color-primary;
-      padding: 5px;
-      text-align: center;
-      text-transform: uppercase;
-      height: 150px;
-      border-radius: 10px;
+.card {
+  border: 2px solid $color-primary;
+  padding: 5px;
+  text-align: left;
+  height: 220px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: lighten($color-secondary, 10%);
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.disabled {
+    opacity: .3;
+  }
+
+  & + .card {
+    margin-top: -190px;
+  }
+}
+
+table.card-table {
+  width: auto;
+  margin: 0 auto;
+
+  > tbody {
+    > tr {
+      > td,
+      > th {
+        text-align: center;
+        padding: 10px;
+      }
     }
   }
+
+  button {
+    display: block;
+    width: 100%;
+  }
+}
+
+.cards {
+  margin: 0 0 10px;
 }

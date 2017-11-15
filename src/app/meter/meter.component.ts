@@ -23,7 +23,7 @@ export class MeterComponent implements OnChanges, OnInit {
         if (this.subscription) {
           this.subscription.unsubscribe();
         }
-        this.subscription = Observable.timer(1000, 20).subscribe(() => {
+        this.subscription = Observable.timer(400, 10).subscribe(() => {
             this.originalPercentage--;
             if (this.originalPercentage <= this.percentage) {
               this.originalPercentage = this.percentage;

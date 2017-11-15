@@ -1,1 +1,146 @@
+<table class="card-table">
+  <tr>
+    <td>
+      <h1>{{battle.enemy.name}}</h1>
+      <station-meter
+        [percentage]="battle.enemy.getHealthPercentage()"
+        [useSecondaryGuage]="true">
+      </station-meter>
+      <dl>
+        <dt>
+          Attack
+        </dt>
+        <dd>
+          {{battle.enemy.getAttackValue()}}
+        </dd>
+        <dt>
+          Defense
+        </dt>
+        <dd>
+          {{battle.enemy.getDefenseValue()}}
+        </dd>
+      </dl>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td *ngFor="let encounter of battle.encounters">
+            <div class="cards">
+              <div class="card">
+                <span *ngIf="encounter.isRevealed">{{encounter.enemyAction.name}}</span>
+                <span *ngIf="!encounter.isRevealed">?</span>
+              </div>
+              <div class="card" *ngIf="encounter.playerAction">
+                {{encounter.playerAction.name}}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h1>{{player.name}}</h1>
+      <station-meter
+        [percentage]="player.getHealthPercentage()"
+        [useSecondaryGuage]="true">
+      </station-meter>
+      <station-meter
+        [percentage]="player.getStaminaPercentage()"
+        [useSecondaryGuage]="true">
+      </station-meter>
+      <dl>
+        <dt>
+          Attack
+        </dt>
+        <dd>
+          {{player.getAttackValue()}}
+        </dd>
+        <dt>
+          Defense
+        </dt>
+        <dd>
+          {{player.getDefenseValue()}}
+        </dd>
+      </dl>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td *ngFor="let encounter of battle.encounters">
+            <div *ngIf="encounter.isActive">
+              <div class="cards">
+                <div class="card" *ngFor="let action of player.combos[0].actions; let i = index;" (click)="selectAction(i)" [ngClass]="{'disabled': action.staminaCost > 0 && player.getStaminaValue() === 0}">
+                  {{action.name}}
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<div class="card-collection">
+  <div class="card-group">
+    <div class="card">
+      Normal Attack
+    </div>
+    <div class="card">
+      Strong Attack
+    </div>
+    <div class="card">
+      Shield Bash
+    </div>
+  </div>
+  <div class="card-group">
+    <div class="card">
+      Dodge
+    </div>
+    <div class="card">
+      Evade
+    </div>
+  </div>
+  <div class="card-group">
+    <div class="card">
+      Wait
+    </div>
+    <div class="card">
+      Heal
+    </div>
+  </div>
+  <div class="card-group">
+    <div class="card">
+      Use Item
+    </div>
+    <div class="card">
+      Change Equipment
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-collection {
+    margin: 0 auto;
+    position: fixed;
+    bottom: -150px;
+  }
+  .card-group {
+    float: left;
+    margin-right: 20px;
+  }
+  .card-group > .card {
+    float: left;
+    margin: 0;
+  }
+  .card-group > .card:hover {
+    margin-top: -30px;
+  }
+  .card-group > .card + .card {
+    margin-left: -110px;
+  }
+</style>
+
 <router-outlet></router-outlet>
